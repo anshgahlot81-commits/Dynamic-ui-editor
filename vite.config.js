@@ -7,4 +7,5 @@ export default defineConfig({
 		jsx: "automatic", // use React 17+ automatic runtime
 		jsxImportSource: "react", // ensures the right import source
 	},
+	base: 'Dynamic-ui-editor',
 });
