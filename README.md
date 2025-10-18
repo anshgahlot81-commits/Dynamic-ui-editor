@@ -224,5 +224,4 @@ App runs at → https://anshgahlot81-commits.github.io/Dynamic-ui-editor/
 Developed by: 🧑‍💻 Ansh Gahlot
 Role: Frontend Engineer
 Year: 2025
-
-> “Designing interfaces that empower creativity and usability.”
+“Designing interfaces that empower creativity and usability.”
