@@ -1,0 +1,1238 @@
+:root {
+	--bg-dark: #1f1f1f; /* dark outer canvas */
+	--bg-panel: #ffffff; /* right card */
+	--bg-page: #f7f7f7; /* page inside magenta frame */
+	--ink: #222;
+	--muted: #6b7280;
+	--border: #e6e6e6;
+	--border-soft: #efefef;
+	--shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+	--brand-peach: #d78568; /* add to cart */
+	--brand-peach-600: #c36f52;
+	--magenta: #ff3ebf; /* magenta frame outline */
+	--chip: #f4f4f5;
+}
+
+* {
+	box-sizing: border-box;
+}
+html,
+body,
+#root {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+	background: #ffffff;
+	color: #111;
+}
+
+.page-root {
+	min-height: 100vh;
+	background: #ffffff;
+	padding: 24px; /* tweak or remove if you want edge-to-edge */
+}
+
+/* ===== Desktop frame (matches screenshot) ===== */
+.frame-wrap {
+	padding: 24px 24px 32px;
+	background: #181818;
+	min-height: 100%;
+}
+.frame-head {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 14px;
+}
+.pill {
+	background: #2d2d2d;
+	color: #e5e7eb;
+	border-radius: 10px;
+	padding: 6px 10px;
+	font-size: 13px;
+	font-weight: 600;
+}
+.frame-inner {
+	background: var(--bg-page);
+	border: 2px solid var(--magenta);
+	border-radius: 8px;
+	padding: 26px;
+	min-height: 70vh;
+	box-shadow: 0 0 0 1px #000 inset;
+}
+.frame-sub {
+	color: #e5e7eb;
+	font-size: 13px;
+	margin-left: 6px;
+}
+
+/* ===== Main customizer layout ===== */
+.customizer {
+	display: grid;
+	grid-template-columns: 92px 1fr 420px;
+	gap: 20px;
+	align-items: start;
+}
+
+/* Left thumbnails column */
+.thumb-col {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding-top: 10px;
+}
+.frame-wrap,
+.frame-head,
+.frame-inner {
+	display: contents;
+}
+.thumb {
+	width: 72px;
+	height: 72px;
+	border-radius: 8px;
+	overflow: hidden;
+	border: 1px solid var(--border);
+	background: #fff;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+}
+.thumb img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+/* Center stage */
+.stage {
+	position: relative;
+	background: radial-gradient(
+		ellipse at 50% 40%,
+		#ffffff 0%,
+		#f3f3f3 55%,
+		#ededed 100%
+	);
+	border-radius: 10px;
+	border: 1px solid var(--border);
+	min-height: 520px;
+	box-shadow: var(--shadow);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.stage img {
+	width: min(960px, 92%);
+	height: auto;
+	filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.25));
+}
+
+/* Floating tool buttons */
+.tools {
+	position: absolute;
+	right: 18px;
+	top: 50%;
+	transform: translateY(-50%);
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.tool-btn {
+	width: 38px;
+	height: 38px;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	background: #fff;
+	display: grid;
+	place-items: center;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+}
+.tool-btn svg {
+	width: 18px;
+	height: 18px;
+	color: #6b7280;
+}
+
+.room-cta {
+	position: absolute;
+	left: 18px;
+	bottom: 18px;
+	background: #fff;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	padding: 10px 12px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-weight: 600;
+	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+.room-cta svg {
+	width: 16px;
+	height: 16px;
+	color: #6b7280;
+}
+
+/* Right panel card (matches screenshot look) */
+.panel {
+	background: var(--bg-panel);
+	border: 1px solid var(--border);
+	border-radius: 10px;
+	box-shadow: var(--shadow);
+	overflow: hidden;
+}
+.panel-head {
+	padding: 16px 18px 8px;
+	border-bottom: 1px solid var(--border-soft);
+}
+.panel-title {
+	font-weight: 700;
+	color: #111;
+}
+.panel-progress {
+	margin-top: 10px;
+	height: 6px;
+	background: #f3f4f6;
+	border-radius: 999px;
+	overflow: hidden;
+}
+.panel-progress > i {
+	display: block;
+	height: 100%;
+	width: 38%;
+	background: #e7e7e7;
+}
+
+/* "Customize your Chair" header */
+.panel-subhead {
+	padding: 12px 18px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: #111;
+	border-bottom: 1px solid var(--border-soft);
+	font-weight: 600;
+}
+.dots {
+	width: 18px;
+	height: 18px;
+	position: relative;
+}
+.dots::before,
+.dots::after {
+	content: "";
+	position: absolute;
+	width: 3px;
+	height: 3px;
+	background: #9ca3af;
+	border-radius: 999px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.dots::before {
+	top: 2px;
+}
+.dots::after {
+	bottom: 2px;
+}
+.dots i {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 3px;
+	height: 3px;
+	background: #9ca3af;
+	border-radius: 999px;
+}
+
+/* Accordion */
+.acc-item {
+	border-bottom: 1px solid var(--border-soft);
+	background: #fff;
+}
+.acc-head {
+	display: grid;
+	grid-template-columns: 36px 1fr 20px;
+	align-items: center;
+	gap: 10px;
+	padding: 12px 18px;
+	cursor: pointer;
+}
+/* Make accordion headers full width inside the panel */
+.acc-item {
+	padding: 0 12px;
+} /* slight horizontal gutter like the screenshot */
+.acc-head {
+	width: 100%; /* <— key fix */
+	display: grid; /* keep icon/title/chevron layout */
+	grid-template-columns: 36px 1fr 20px;
+	align-items: center;
+	gap: 10px;
+	padding: 12px 14px;
+	text-align: left; /* prevent button inline centering */
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	background: #ffffff;
+}
+
+.acc-body {
+	padding: 12px 6px 16px 12px;
+} /* keep body aligned under full-width header */
+
+.acc-icon {
+	width: 36px;
+	height: 36px;
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	background: #fafafa;
+	display: grid;
+	place-items: center;
+}
+.acc-title {
+	font-weight: 700;
+	color: #111;
+}
+.acc-sub {
+	font-size: 12px;
+	color: #6b7280;
+}
+.chev {
+	width: 16px;
+	height: 16px;
+	color: #6b7280;
+	justify-self: end;
+}
+.acc-body {
+	padding: 12px 18px 16px;
+	background: #fff;
+}
+
+/* Section tags */
+.mat-label {
+	font-size: 11px;
+	color: #6b7280;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	margin: 4px 0 8px;
+}
+
+/* Swatches grid */
+.swatch-grid {
+	display: grid;
+	grid-template-columns: repeat(8, 32px);
+	gap: 12px;
+	margin-bottom: 18px;
+}
+.swatch {
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	border: 2px solid #fff;
+	outline: 1px solid rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	position: relative;
+	display: block;
+}
+.swatch.active {
+	outline: 2px solid #c46f55;
+}
+.swatch:after {
+	content: attr(data-title);
+	position: absolute;
+	top: -34px;
+	left: 50%;
+	transform: translateX(-50%);
+	white-space: nowrap;
+	background: #fff;
+	color: #111;
+	border: 1px solid var(--border);
+	padding: 4px 6px;
+	border-radius: 6px;
+	font-size: 11px;
+	box-shadow: var(--shadow);
+	opacity: 0;
+	pointer-events: none;
+	transition: 0.15s;
+}
+.swatch:hover:after {
+	opacity: 1;
+}
+
+.divider {
+	height: 1px;
+	background: var(--border-soft);
+	margin: 10px 0;
+}
+
+/* Price bar */
+.price-bar {
+	padding: 14px 18px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	border-top: 1px solid var(--border-soft);
+	background: #fff;
+}
+.price-meta {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+.price-meta small {
+	color: #6b7280;
+}
+.price {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-weight: 700;
+	color: #111;
+}
+.price .strike {
+	color: #9ca3af;
+	text-decoration: line-through;
+	font-weight: 600;
+}
+.cta {
+	padding: 12px 18px;
+	border-radius: 8px;
+	background: var(--brand-peach);
+	color: #fff;
+	border: 1px solid #bf6a4e;
+	font-weight: 700;
+	cursor: pointer;
+}
+.cta:hover {
+	background: var(--brand-peach-600);
+}
+
+/* Helpers */
+.row-between {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.thumb {
+	cursor: pointer;
+}
+.thumb.active {
+	outline: 2px solid #c46f55;
+}
+.thumb:focus-visible {
+	outline: 2px solid #3b82f6;
+	outline-offset: 2px;
+}
+.thumb img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+/* --- top-left page toggle --- */
+.nav-switch {
+	position: fixed;
+	top: 14px;
+	left: 14px;
+	z-index: 50;
+	display: flex;
+	gap: 6px;
+}
+.nav-btn {
+	border: 1px solid #e5e7eb;
+	background: #fff;
+	padding: 6px 10px;
+	border-radius: 8px;
+	cursor: pointer;
+	font-weight: 600;
+}
+.nav-btn.active {
+	background: #111827;
+	color: #fff;
+	border-color: #111827;
+}
+
+/* --- overview page --- */
+.overview {
+	max-width: 1100px;
+	margin: 60px auto 40px;
+	color: #111;
+}
+.overview h1 {
+	font-size: 28px;
+	margin: 0 0 18px;
+}
+.overview-grid {
+	display: grid;
+	grid-template-columns: 1.2fr 0.8fr;
+	gap: 28px;
+}
+.spec section {
+	margin-bottom: 18px;
+}
+.spec h3 {
+	margin: 0 0 6px;
+	font-size: 16px;
+}
+.spec ul {
+	margin: 0 0 10px 18px;
+	padding: 0;
+	line-height: 1.6;
+}
+.spec p {
+	margin: 0 0 10px;
+	color: #374151;
+}
+
+/* mini cards to mimic the screenshot on the right column */
+.mini-card {
+	border: 1px solid #ececec;
+	border-radius: 10px;
+	background: #fff;
+	box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+	padding: 10px 12px 12px;
+	margin-bottom: 18px;
+}
+.mini-card--peach .mini-row--peach {
+	background: #f8e7e1;
+	border-color: #efd4cc;
+}
+.mini-head {
+	padding: 6px 6px 10px;
+	border-bottom: 1px solid #f0f0f0;
+}
+.mini-title {
+	font-weight: 700;
+}
+
+.mini-sub {
+	padding: 12px 6px;
+	font-weight: 600;
+	border-bottom: 1px solid #f0f0f0;
+}
+.mini-row {
+	margin: 10px 0;
+	padding: 10px 10px;
+	display: grid;
+	grid-template-columns: 32px 1fr 16px;
+	gap: 10px;
+	border: 1px solid #ececec;
+	border-radius: 8px;
+	align-items: center;
+	background: #fff;
+}
+.mini-row--peach {
+	background: #f6f0ee;
+}
+.mini-row-title {
+	font-weight: 700;
+}
+.mini-row-sub {
+	font-size: 12px;
+	color: #6b7280;
+}
+.mini-chevron {
+	color: #6b7280;
+	justify-self: end;
+}
+.mini-pill {
+	width: 32px;
+	height: 32px;
+	border-radius: 6px;
+	border: 1px solid #e5e7eb;
+	background: #fafafa;
+}
+.mini-swatch-square {
+	width: 32px;
+	height: 32px;
+	border-radius: 6px;
+	border: 1px solid #e5e7eb;
+	background: #6f524e;
+}
+
+.mini-label {
+	font-size: 11px;
+	color: #6b7280;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	margin: 8px 0 6px;
+}
+.mini-swatches {
+	display: grid;
+	grid-template-columns: repeat(8, 22px);
+	gap: 10px;
+	margin-bottom: 8px;
+}
+.mini-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	border-top: 1px solid #f0f0f0;
+	padding-top: 10px;
+	margin-top: 8px;
+}
+.mini-price .strike {
+	color: #9ca3af;
+	text-decoration: line-through;
+	margin-left: 6px;
+}
+.mini-cta {
+	padding: 8px 12px;
+	border-radius: 8px;
+	background: #d78568;
+	color: #fff;
+	border: 1px solid #bf6a4e;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+/* tiny swatch variant used on overview mini cards */
+.swatch--sm {
+	width: 20px;
+	height: 20px;
+	border: 2px solid #fff;
+	outline: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 50%;
+}
+
+/* =======================
+   Mobile (iPhone 14/15 Pro)
+   ======================= */
+@media (max-width: 430px) {
+	.page-root {
+		padding: 0;
+	}
+
+	/* Layout becomes single column */
+	.customizer {
+		display: block;
+	}
+
+	/* Hide the left thumbnail rail; we show a "View photos" chip instead */
+	.thumb-col {
+		display: none;
+	}
+
+	/* Stage fills width with generous radius and shadow like the comp */
+	.stage {
+		margin: 12px;
+		min-height: 360px; /* visual depth similar to screenshot */
+		border-radius: 16px;
+	}
+	.stage img {
+		width: 90%;
+	}
+
+	/* Right-side tool buttons tighter spacing */
+	.tools {
+		right: 12px;
+		gap: 8px;
+	}
+	.tool-btn {
+		width: 36px;
+		height: 36px;
+		border-radius: 10px;
+	}
+
+	/* View photos chip (top-left of stage) */
+	.photos-chip {
+		display: flex;
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		align-items: center;
+		gap: 6px;
+		padding: 6px 8px;
+		background: rgba(0, 0, 0, 0.8);
+		color: #fff;
+		font-weight: 600;
+		font-size: 12px;
+		border-radius: 6px;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+	}
+	.photos-chip .film {
+		width: 16px;
+		height: 12px;
+		display: inline-block;
+		background: linear-gradient(#fff 0 0) left/3px 100%,
+			linear-gradient(#fff 0 0) right/3px 100%,
+			linear-gradient(#fff 0 0) center/8px 100%;
+		background-repeat: no-repeat;
+		mask: linear-gradient(#000 0 0), linear-gradient(#000 0 0),
+			linear-gradient(#000 0 0);
+	}
+
+	/* Bottom sheet behavior for the right panel */
+	.panel {
+		position: fixed;
+		left: 8px;
+		right: 8px;
+		bottom: 8px;
+		width: auto;
+		max-height: 74vh;
+		border-radius: 12px;
+		z-index: 40;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+	}
+	.panel-head {
+		padding: 12px 14px 8px;
+		border-bottom: none;
+	}
+	.panel-actions {
+		display: flex;
+		gap: 8px;
+		align-items: center;
+	}
+	.ar-chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 6px 10px;
+		border-radius: 999px;
+		border: 1px solid var(--border);
+		background: #fff;
+		font-weight: 600;
+		color: #374151;
+	}
+	.sheet-toggle {
+		width: 32px;
+		height: 32px;
+		display: grid;
+		place-items: center;
+		border: 1px solid var(--border);
+		background: #fff;
+		border-radius: 8px;
+	}
+	.panel-progress {
+		margin-top: 8px;
+	}
+
+	/* Keep “Customize your Chair” visible when collapsed; sticky when open */
+	.panel-subhead {
+		padding: 10px 14px;
+		border-top: 1px solid var(--border-soft);
+		border-bottom: 1px solid var(--border-soft);
+		position: sticky;
+		top: 0;
+		background: #fff;
+		z-index: 1;
+	}
+
+	/* Collapse/expand */
+	.panel.sheet-closed .sheet-body {
+		display: none;
+	}
+	.panel.sheet-open .sheet-body {
+		display: block;
+		overflow: auto;
+	}
+	.sheet-body {
+		padding-bottom: 8px;
+	}
+
+	/* Accordion spacing inside sheet on mobile */
+	.acc-item {
+		padding: 0 10px;
+	}
+	.acc-head {
+		padding: 10px 12px;
+	}
+	.acc-body {
+		padding: 10px 6px 14px 10px;
+	}
+
+	/* Price bar pinned to bottom of content */
+	.price-bar {
+		position: sticky;
+		bottom: 0;
+		background: #fff;
+	}
+
+	/* Optional: hide the big “View in your room” button under the stage if the
+     sheet might overlap; comment out if you want it visible */
+	.room-cta {
+		display: none;
+	}
+}
+
+/* =========================
+   Device switch (UI control)
+   ========================= */
+.device-switch {
+	position: fixed;
+	top: 10px;
+	right: 10px;
+	z-index: 1000;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px;
+	background: #fff;
+	border: 1px solid #e5e7eb;
+	border-radius: 10px;
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+	font-weight: 600;
+}
+.device-switch span {
+	color: #374151;
+	margin-right: 4px;
+}
+.device-switch .seg {
+	border: 1px solid #e5e7eb;
+	background: #fff;
+	padding: 6px 10px;
+	border-radius: 8px;
+	cursor: pointer;
+}
+.device-switch .seg.active {
+	background: #111827;
+	color: #fff;
+	border-color: #111827;
+}
+
+/* Wrap content to simulate device width when forcing modes */
+.device-container {
+	margin: 44px auto 0;
+}
+.w-mobile {
+	width: 390px;
+	max-width: 100%;
+} /* iPhone 14/15 Pro logical width */
+.w-tablet {
+	width: 820px;
+	max-width: 100%;
+} /* iPad Air PORTRAIT-ish */
+.w-desktop {
+	width: 1200px;
+	max-width: 100%;
+}
+
+/* =========================
+   TABLET (431px–1024px)
+   ========================= */
+@media (min-width: 431px) and (max-width: 1024px) {
+	.page-root {
+		padding: 12px;
+	}
+
+	/* Two-column layout (hide left rail to save space) */
+	.thumb-col {
+		display: none;
+	}
+
+	.customizer {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto;
+		gap: 12px;
+	}
+
+	.stage {
+		margin: 0;
+		min-height: 460px;
+		border-radius: 14px;
+	}
+	.stage img {
+		width: 94%;
+	}
+
+	/* Panel becomes a normal block under the stage */
+	.panel {
+		position: static;
+		width: auto;
+		max-height: none;
+		border-radius: 12px;
+	}
+	.panel-head {
+		padding: 14px 16px 8px;
+	}
+	.panel-subhead {
+		position: static;
+		padding: 12px 16px;
+	}
+	.sheet-body {
+		display: block;
+		overflow: visible;
+	}
+}
+
+/* =========================
+   MOBILE (≤430px) - iPhone 14/15 Pro
+   (you already had mobile rules; kept here to ensure they're last)
+   ========================= */
+@media (max-width: 430px) {
+	.page-root {
+		padding: 0;
+	}
+	.customizer {
+		display: block;
+	}
+	.thumb-col {
+		display: none;
+	}
+
+	.stage {
+		margin: 12px;
+		min-height: 360px;
+		border-radius: 16px;
+	}
+	.stage img {
+		width: 90%;
+	}
+
+	.tools {
+		right: 12px;
+		gap: 8px;
+	}
+	.tool-btn {
+		width: 36px;
+		height: 36px;
+		border-radius: 10px;
+	}
+
+	.photos-chip {
+		display: flex;
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		align-items: center;
+		gap: 6px;
+		padding: 6px 8px;
+		background: rgba(0, 0, 0, 0.8);
+		color: #fff;
+		font-weight: 600;
+		font-size: 12px;
+		border-radius: 6px;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+	}
+	.photos-chip .film {
+		width: 16px;
+		height: 12px;
+		display: inline-block;
+		background: linear-gradient(#fff 0 0) left/3px 100%,
+			linear-gradient(#fff 0 0) right/3px 100%,
+			linear-gradient(#fff 0 0) center/8px 100%;
+		background-repeat: no-repeat;
+	}
+
+	/* Bottom sheet */
+	.panel {
+		position: fixed;
+		left: 8px;
+		right: 8px;
+		bottom: 8px;
+		width: auto;
+		max-height: 74vh;
+		border-radius: 12px;
+		z-index: 40;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+	}
+	.panel-head {
+		padding: 12px 14px 8px;
+		border-bottom: none;
+	}
+	.panel-subhead {
+		padding: 10px 14px;
+		border-top: 1px solid var(--border-soft);
+		border-bottom: 1px solid var(--border-soft);
+		position: sticky;
+		top: 0;
+		background: #fff;
+		z-index: 1;
+	}
+	.panel.sheet-closed .sheet-body {
+		display: none;
+	}
+	.panel.sheet-open .sheet-body {
+		display: block;
+		overflow: auto;
+	}
+	.sheet-body {
+		padding-bottom: 8px;
+	}
+	.acc-item {
+		padding: 0 10px;
+	}
+	.acc-head {
+		padding: 10px 12px;
+	}
+	.acc-body {
+		padding: 10px 6px 14px 10px;
+	}
+	.price-bar {
+		position: sticky;
+		bottom: 0;
+		background: #fff;
+	}
+	.room-cta {
+		display: none;
+	}
+}
+
+/* ======================================================
+   FORCE MODES (apply the same rules without media queries)
+   ====================================================== */
+
+/* Force MOBILE */
+.force-mobile .page-root {
+	padding: 0;
+}
+.force-mobile .thumb-col {
+	display: none;
+}
+.force-mobile .customizer {
+	display: block;
+}
+.force-mobile .stage {
+	margin: 12px;
+	min-height: 360px;
+	border-radius: 16px;
+}
+.force-mobile .stage img {
+	width: 90%;
+}
+.force-mobile .tools {
+	right: 12px;
+	gap: 8px;
+}
+.force-mobile .tool-btn {
+	width: 36px;
+	height: 36px;
+	border-radius: 10px;
+}
+.force-mobile .photos-chip {
+	display: flex;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 8px;
+	background: rgba(0, 0, 0, 0.8);
+	color: #fff;
+	font-weight: 600;
+	font-size: 12px;
+	border-radius: 6px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.force-mobile .panel {
+	position: fixed;
+	left: 8px;
+	right: 8px;
+	bottom: 8px;
+	width: auto;
+	max-height: 74vh;
+	border-radius: 12px;
+	z-index: 40;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+.force-mobile .panel-subhead {
+	padding: 10px 14px;
+	border-top: 1px solid var(--border-soft);
+	border-bottom: 1px solid var(--border-soft);
+	position: sticky;
+	top: 0;
+	background: #fff;
+	z-index: 1;
+}
+.force-mobile .panel.sheet-closed .sheet-body {
+	display: none;
+}
+.force-mobile .panel.sheet-open .sheet-body {
+	display: block;
+	overflow: auto;
+}
+.force-mobile .sheet-body {
+	padding-bottom: 8px;
+}
+.force-mobile .acc-item {
+	padding: 0 10px;
+}
+.force-mobile .acc-head {
+	padding: 10px 12px;
+}
+.force-mobile .acc-body {
+	padding: 10px 6px 14px 10px;
+}
+.force-mobile .price-bar {
+	position: sticky;
+	bottom: 0;
+	background: #fff;
+}
+.force-mobile .room-cta {
+	display: none;
+}
+
+/* Force TABLET */
+.force-tablet .page-root {
+	padding: 12px;
+}
+.force-tablet .thumb-col {
+	display: none;
+}
+.force-tablet .customizer {
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: auto auto;
+	gap: 12px;
+}
+.force-tablet .stage {
+	margin: 0;
+	min-height: 460px;
+	border-radius: 14px;
+}
+.force-tablet .stage img {
+	width: 94%;
+}
+.force-tablet .panel {
+	position: static;
+	width: auto;
+	max-height: none;
+	border-radius: 12px;
+}
+.force-tablet .panel-subhead {
+	position: static;
+	padding: 12px 16px;
+}
+.force-tablet .sheet-body {
+	display: block;
+	overflow: visible;
+}
+
+/* Force DESKTOP simply removes width constraints (default desktop CSS already applies) */
+.force-desktop .device-container {
+	width: 1200px;
+	max-width: 100%;
+}
+
+/* Hide photos chip by default (desktop/tablet) */
+.photos-chip {
+	display: none;
+}
+
+/* Photos overlay panel (used when chip is tapped) */
+.photos-overlay {
+	position: absolute;
+	inset: 0;
+	z-index: 5;
+	background: rgba(0, 0, 0, 0.35);
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+	padding: 12px;
+}
+.photos-panel {
+	background: #fff;
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	box-shadow: var(--shadow);
+	width: 88%;
+	max-height: 75%;
+	overflow: auto;
+	padding: 10px;
+}
+.photos-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 4px 2px 8px;
+}
+.photos-close {
+	width: 32px;
+	height: 32px;
+	border: 1px solid var(--border);
+	background: #fff;
+	border-radius: 8px;
+	font-size: 18px;
+	line-height: 1;
+	cursor: pointer;
+}
+.photos-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 10px;
+}
+.photos-thumb {
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	overflow: hidden;
+	background: #fff;
+	padding: 0;
+}
+.photos-thumb img {
+	width: 100%;
+	height: 68px;
+	object-fit: cover;
+	display: block;
+}
+.photos-thumb.active {
+	outline: 2px solid #c46f55;
+}
+
+/* Show the chip ONLY on mobile breakpoint */
+@media (max-width: 430px) {
+	.photos-chip {
+		display: flex;
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		align-items: center;
+		gap: 6px;
+		padding: 6px 8px;
+		background: rgba(0, 0, 0, 0.8);
+		color: #fff;
+		font-weight: 600;
+		font-size: 12px;
+		border-radius: 6px;
+		border: 1px solid rgba(255, 255, 255, 0.2);
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+	}
+	.photos-chip .film {
+		width: 16px;
+		height: 12px;
+		display: inline-block;
+		background: linear-gradient(#fff 0 0) left/3px 100%,
+			linear-gradient(#fff 0 0) right/3px 100%,
+			linear-gradient(#fff 0 0) center/8px 100%;
+		background-repeat: no-repeat;
+	}
+}
+
+/* Also show when you force Mobile mode with the device switch */
+.force-mobile .photos-chip {
+	display: flex;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 8px;
+	background: rgba(0, 0, 0, 0.8);
+	color: #fff;
+	font-weight: 600;
+	font-size: 12px;
+	border-radius: 6px;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+.force-mobile .photos-chip .film {
+	width: 16px;
+	height: 12px;
+	display: inline-block;
+	background: linear-gradient(#fff 0 0) left/3px 100%,
+		linear-gradient(#fff 0 0) right/3px 100%,
+		linear-gradient(#fff 0 0) center/8px 100%;
+	background-repeat: no-repeat;
+}
